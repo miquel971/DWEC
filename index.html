@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REPASO EXAMEN TEORIA DWEC</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1 id="titulo-test">REPASO EXAMEN TEORIA DWEC</h1>
+
+        <div id="menu-principal" class="grid-menu">
+            <button onclick="iniciarTest('uf1')">UF1: Sintaxis y Tipos</button>
+            <button onclick="iniciarTest('uf2')">UF2: Estructuras Control</button>
+            <button onclick="iniciarTest('uf3')">UF3: Objetos y Funciones</button>
+            <button onclick="iniciarTest('uf4')">UF4: BOM (Browser)</button>
+            <button onclick="iniciarTest('uf5')">UF5: DOM (Documento)</button>
+            <button onclick="iniciarTest('uf6')">UF6: Eventos y Form</button>
+            <button onclick="iniciarTest('uf7')">UF7: AJAX y Fetch</button>
+            <button onclick="iniciarTest('mix')" class="btn-mix">EXAMEN MIX DWEC</button>
+            
+            <button id="btn-matrix" class="btn-hidden">matrix</button>
+        </div>
+
+        <div id="zona-test" style="display: none;">
+            <div id="preguntas-lista"></div>
+            <div class="controles-finales">
+                <button id="btn-nota" class="btn-accion">CALCULAR NOTA</button>
+                <button onclick="volverAlMenu()" class="btn-accion btn-volver">VOLVER AL PANEL</button>
+            </div>
+            <div id="resultado"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

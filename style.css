@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap');
+
+body { 
+    background-color: #0f0f12; 
+    color: #e0e0e0; 
+    font-family: 'Roboto', sans-serif; 
+    margin: 0; 
+    padding: 20px; 
+    min-height: 100vh;
+    transition: background 0.5s ease;
+}
+
+/* Clase que activa la foto al dar al botón secreto */
+body.matrix-active {
+    background: linear-gradient(rgba(15, 15, 18, 0.5), rgba(15, 15, 18, 0.5)), url('img/lux.jpg');
+    background-size: cover;
+    background-position: center 40%; /* Baja la foto para que se vea mejor */
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+
+.container { max-width: 850px; margin: 0 auto; }
+
+h1 { 
+    text-align: center; 
+    font-family: 'Oswald', sans-serif; 
+    text-transform: uppercase; 
+    font-size: 3rem; 
+    color: #a9a9b4; /* Título Gris */
+    letter-spacing: -1px; 
+}
+
+.grid-menu { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
+
+button { 
+    padding: 20px; 
+    font-family: 'Oswald', sans-serif; 
+    font-size: 1.1rem; 
+    text-transform: uppercase; 
+    cursor: pointer; 
+    border: 2px solid #848282; 
+    background: #a9a9b4; /* Botones Grises */
+    color: rgb(41, 40, 40); 
+    transition: all 0.2s ease; 
+}
+
+button:hover { 
+    background: #f08bad; /* Rosa solo al pasar el ratón */
+    color: #000; 
+    transform: translateY(-3px); 
+}
+
+.btn-mix { 
+    grid-column: span 2; 
+    background: #a9a9b4; 
+    color: rgb(41, 40, 40); 
+}
+
+/* El botón Matrix camuflado */
+.btn-hidden {
+    grid-column: span 2;
+    background: transparent !important;
+    border: none !important;
+    color: #1a1a1f !important; /* Casi igual al fondo para que no se vea */
+    font-size: 0.6rem !important;
+    text-transform: lowercase !important;
+    cursor: crosshair !important;
+    margin-top: 10px;
+}
+
+.btn-hidden:hover {
+    color: #f08bad !important; /* Se revela en rosa al pasar el ratón */
+}
+
+.pregunta { background: rgba(22, 22, 26, 0.9); padding: 25px; margin-bottom: 25px; border-left: 5px solid #a9a9b4; }
+.opciones { display: flex; flex-direction: column; gap: 12px; }
+.opcion { background: #252529; text-align: left; border: 1px solid #444; color: #e0e0e0; }
+
+.correcta { background: #2ecc71 !important; color: white; }
+.incorrecta { background: #e74c3c !important; color: white; }
+
+.frase-test { font-family: 'Oswald', sans-serif; font-weight: 700; text-transform: uppercase; font-size: 4.5rem; text-align: center; margin-top: 20px; line-height: 0.9; }
+.nota-critica { color: #ff4757; } 
+.nota-aprobada { color: #ffa502; } 
+.nota-notable { color: #2ed573; } 
+.nota-crack { color: #1e90ff; text-shadow: 0 0 25px rgba(30, 144, 255, 0.6); }
+
+#resultado { margin-top: 40px; padding: 30px; background: rgba(255,255,255,0.05); }
+.btn-accion { width: 100%; margin-bottom: 10px; border-radius: 50px; background: #a9a9b4; color: #000; }
