@@ -10,6 +10,7 @@ body {
     transition: background 0.5s ease;
 }
 
+/* CLASE MATRIX: Aquí está la URL que me pedías */
 body.matrix-active {
     background: linear-gradient(rgba(15, 15, 18, 0.5), rgba(15, 15, 18, 0.5)), url('img/lux.jpg');
     background-size: cover;
@@ -49,7 +50,11 @@ button:hover {
     transform: translateY(-3px); 
 }
 
-.btn-mix { grid-column: span 2; background: #a9a9b4; color: rgb(41, 40, 40); }
+.btn-mix { 
+    grid-column: span 2; 
+    background: #a9a9b4; 
+    color: rgb(41, 40, 40); 
+}
 
 .btn-hidden {
     grid-column: span 2;
@@ -62,7 +67,9 @@ button:hover {
     margin-top: 10px;
 }
 
-.btn-hidden:hover { color: #f08bad !important; }
+.btn-hidden:hover {
+    color: #f08bad !important; 
+}
 
 .pregunta { background: rgba(22, 22, 26, 0.9); padding: 25px; margin-bottom: 25px; border-left: 5px solid #a9a9b4; }
 .opciones { display: flex; flex-direction: column; gap: 12px; }
