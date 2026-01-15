@@ -310,10 +310,10 @@ document.getElementById('btn-nota').onclick = () => {
     const notaFinal = (aciertos / total) * 10;
     let frase = ""; let clase = "";
     
-    if (notaFinal < 5) { frase = "WATTAFAK?"; clase = "nota-critica"; }
-    else if (notaFinal < 7) { frase = "ESBIEN"; clase = "nota-aprobada"; }
+    if (notaFinal < 5) { frase = "SUSPENSO?"; clase = "nota-critica"; }
+    else if (notaFinal < 7) { frase = "BIEN"; clase = "nota-aprobada"; }
     else if (notaFinal < 9) { frase = "BOMBOCLAT"; clase = "nota-notable"; }
-    else { frase = "PUTACRANCKPELUT!!!"; clase = "nota-crack"; }
+    else { frase = "PUTACRACK!!!"; clase = "nota-crack"; }
 
     divResultado.innerHTML = `
         <div style="font-size: 2rem; font-family: 'Oswald';">Nota: ${aciertos} / ${total} (${notaFinal.toFixed(1)})</div>

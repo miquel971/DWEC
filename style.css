@@ -89,8 +89,8 @@ button:hover {
 
 .frase-test { 
     font-family: 'Oswald', sans-serif; 
-    font-weight: 700; 
-    text-transform: uppercase; 
+    font-weight: 200; 
+    text-transform: lowercase; 
     font-size: 4.5rem; 
     text-align: center; 
     margin-top: 20px; 
@@ -98,7 +98,7 @@ button:hover {
 }
 
 .nota-critica { color: #ff4757; } 
-.nota-aprobada { color: #ffa502; } 
+.nota-aprobada { color: #a78039; } 
 .nota-notable { color: #2ed573; } 
 .nota-crack { color: #1e90ff; text-shadow: 0 0 25px rgba(30, 144, 255, 0.6); }
 
