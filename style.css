@@ -10,11 +10,10 @@ body {
     transition: background 0.5s ease;
 }
 
-/* Clase que activa la foto al dar al botón secreto */
 body.matrix-active {
     background: linear-gradient(rgba(15, 15, 18, 0.5), rgba(15, 15, 18, 0.5)), url('img/lux.jpg');
     background-size: cover;
-    background-position: center 40%; /* Baja la foto para que se vea mejor */
+    background-position: center 40%; 
     background-attachment: fixed;
     background-repeat: no-repeat;
 }
@@ -26,7 +25,7 @@ h1 {
     font-family: 'Oswald', sans-serif; 
     text-transform: uppercase; 
     font-size: 3rem; 
-    color: #a9a9b4; /* Título Gris */
+    color: #a9a9b4; 
     letter-spacing: -1px; 
 }
 
@@ -39,51 +38,73 @@ button {
     text-transform: uppercase; 
     cursor: pointer; 
     border: 2px solid #848282; 
-    background: #a9a9b4; /* Botones Grises */
+    background: #a9a9b4; 
     color: rgb(41, 40, 40); 
     transition: all 0.2s ease; 
 }
 
 button:hover { 
-    background: #f08bad; /* Rosa solo al pasar el ratón */
+    background: #f08bad; 
     color: #000; 
     transform: translateY(-3px); 
 }
 
-.btn-mix { 
-    grid-column: span 2; 
-    background: #a9a9b4; 
-    color: rgb(41, 40, 40); 
-}
+.btn-mix { grid-column: span 2; background: #a9a9b4; color: rgb(41, 40, 40); }
 
-/* El botón Matrix camuflado */
 .btn-hidden {
     grid-column: span 2;
     background: transparent !important;
     border: none !important;
-    color: #1a1a1f !important; /* Casi igual al fondo para que no se vea */
+    color: #1a1a1f !important; 
     font-size: 0.6rem !important;
     text-transform: lowercase !important;
     cursor: crosshair !important;
     margin-top: 10px;
 }
 
-.btn-hidden:hover {
-    color: #f08bad !important; /* Se revela en rosa al pasar el ratón */
-}
+.btn-hidden:hover { color: #f08bad !important; }
 
 .pregunta { background: rgba(22, 22, 26, 0.9); padding: 25px; margin-bottom: 25px; border-left: 5px solid #a9a9b4; }
 .opciones { display: flex; flex-direction: column; gap: 12px; }
-.opcion { background: #252529; text-align: left; border: 1px solid #444; color: #e0e0e0; }
 
-.correcta { background: #2ecc71 !important; color: white; }
-.incorrecta { background: #e74c3c !important; color: white; }
+.opcion { 
+    background: #252529; 
+    text-align: left; 
+    border: 1px solid #444; 
+    color: #e0e0e0; 
+    padding: 15px;
+    font-family: 'Roboto', sans-serif;
+    text-transform: none;
+}
 
-.frase-test { font-family: 'Oswald', sans-serif; font-weight: 700; text-transform: uppercase; font-size: 4.5rem; text-align: center; margin-top: 20px; line-height: 0.9; }
+.correcta { background: #2ecc71 !important; color: white !important; border-color: #27ae60 !important; }
+.incorrecta { background: #e74c3c !important; color: white !important; border-color: #c0392b !important; }
+
+.frase-test { 
+    font-family: 'Oswald', sans-serif; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    font-size: 4.5rem; 
+    text-align: center; 
+    margin-top: 20px; 
+    line-height: 0.9; 
+}
+
 .nota-critica { color: #ff4757; } 
 .nota-aprobada { color: #ffa502; } 
 .nota-notable { color: #2ed573; } 
 .nota-crack { color: #1e90ff; text-shadow: 0 0 25px rgba(30, 144, 255, 0.6); }
 
-#resultado { margin-top: 40px; padding: 30px; background: rgba(255,255,255,0.05); }
-.btn-accion { width: 100%; margin-bottom: 10px; border-radius: 50px; background: #a9a9b4; color: #000; }
+#resultado { margin-top: 40px; padding: 30px; background: rgba(255,255,255,0.05); text-align: center; }
+
+.btn-accion { 
+    width: 100%; 
+    margin-bottom: 10px; 
+    border-radius: 50px; 
+    background: #a9a9b4; 
+    color: #000; 
+}
+
+.btn-volver { border: 2px solid #f08bad; }
+
+.controles-finales { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }

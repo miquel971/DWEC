@@ -250,6 +250,7 @@ function iniciarTest(modo) {
         preguntasActuales = [...db[modo]].sort(() => 0.5 - Math.random());
     }
     renderizarPreguntas();
+    window.scrollTo(0, 0);
 }
 
 function generarExamenMix() {
@@ -265,39 +266,57 @@ function renderizarPreguntas() {
         div.className = 'pregunta';
         div.innerHTML = `<p>${i + 1}. ${p.q}</p><div class="opciones" id="opts-${i}"></div>`;
         lista.appendChild(div);
-        p.a.forEach((opt, idx) => {
+
+        // MEZCLA DE RESPUESTAS (Algoritmo Fisher-Yates)
+        let opciones = p.a.map((texto, index) => ({ texto, index }));
+        for (let j = opciones.length - 1; j > 0; j--) {
+            const k = Math.floor(Math.random() * (j + 1));
+            [opciones[j], opciones[k]] = [opciones[k], opciones[j]];
+        }
+
+        opciones.forEach((opt) => {
             const btn = document.createElement('button');
             btn.className = 'opcion';
-            btn.innerText = opt;
-            btn.onclick = () => validar(btn, i, idx);
+            btn.innerText = opt.texto;
+            btn.onclick = () => validar(btn, i, opt.index);
             document.getElementById(`opts-${i}`).appendChild(btn);
         });
     });
 }
 
-function validar(btn, pIdx, oIdx) {
-    const opciones = document.getElementById(`opts-${pIdx}`).children;
-    if (opciones[0].disabled) return;
-    for (let b of opciones) b.disabled = true;
-    if (oIdx === preguntasActuales[pIdx].c) {
+function validar(btn, pIdx, oIdxElegido) {
+    const contenedor = document.getElementById(`opts-${pIdx}`);
+    const botones = contenedor.children;
+    if (botones[0].disabled) return;
+    
+    for (let b of botones) b.disabled = true;
+
+    if (oIdxElegido === preguntasActuales[pIdx].c) {
         btn.classList.add('correcta');
         aciertos++;
     } else {
         btn.classList.add('incorrecta');
-        opciones[preguntasActuales[pIdx].c].classList.add('correcta');
+        for (let b of botones) {
+            // Buscamos el texto que coincide con la correcta original para marcarlo
+            if (b.innerText === preguntasActuales[pIdx].a[preguntasActuales[pIdx].c]) {
+                b.classList.add('correcta');
+            }
+        }
     }
 }
 
 document.getElementById('btn-nota').onclick = () => {
-    const notaFinal = (aciertos / preguntasActuales.length) * 10;
+    const total = preguntasActuales.length;
+    const notaFinal = (aciertos / total) * 10;
     let frase = ""; let clase = "";
+    
     if (notaFinal < 5) { frase = "WATTAFAK?"; clase = "nota-critica"; }
     else if (notaFinal < 7) { frase = "ESBIEN"; clase = "nota-aprobada"; }
     else if (notaFinal < 9) { frase = "BOMBOCLAT"; clase = "nota-notable"; }
     else { frase = "PUTACRANCKPELUT!!!"; clase = "nota-crack"; }
 
     divResultado.innerHTML = `
-        <div style="font-size: 1.8rem; font-family: 'Oswald';">Nota: ${aciertos} / ${preguntasActuales.length}</div>
+        <div style="font-size: 2rem; font-family: 'Oswald';">Nota: ${aciertos} / ${total} (${notaFinal.toFixed(1)})</div>
         <div class="frase-test ${clase}">${frase}</div>
     `;
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
@@ -310,7 +329,6 @@ function volverAlMenu() {
     window.scrollTo(0, 0);
 }
 
-// --- LÓGICA DEL BOTÓN SECRETO MATRIX ---
 document.getElementById('btn-matrix').addEventListener('click', function() {
     document.body.classList.toggle('matrix-active');
 });
