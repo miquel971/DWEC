@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;700&display=swap');
 
+/* --- ESTILOS BASE Y FONDOS --- */
 body { 
     background-color: #0f0f12; 
     color: #e0e0e0; 
@@ -10,7 +11,7 @@ body {
     transition: background 0.5s ease;
 }
 
-/* CLASE MATRIX: Aquí está la URL que me pedías */
+/* Fondo Matrix / Lux */
 body.matrix-active {
     background: linear-gradient(rgba(15, 15, 18, 0.5), rgba(15, 15, 18, 0.5)), url('img/lux.jpg');
     background-size: cover;
@@ -25,11 +26,12 @@ h1 {
     text-align: center; 
     font-family: 'Oswald', sans-serif; 
     text-transform: uppercase; 
-    font-size: 3rem; 
+    font-size: 2.5rem; 
     color: #a9a9b4; 
     letter-spacing: -1px; 
 }
 
+/* --- MENÚ PRINCIPAL --- */
 .grid-menu { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
 
 button { 
@@ -67,11 +69,14 @@ button:hover {
     margin-top: 10px;
 }
 
-.btn-hidden:hover {
-    color: #f08bad !important; 
+/* --- ESTILOS DEL TEST Y PREGUNTAS --- */
+.pregunta { 
+    background: rgba(22, 22, 26, 0.9); 
+    padding: 25px; 
+    margin-bottom: 25px; 
+    border-left: 5px solid #a9a9b4; 
 }
 
-.pregunta { background: rgba(22, 22, 26, 0.9); padding: 25px; margin-bottom: 25px; border-left: 5px solid #a9a9b4; }
 .opciones { display: flex; flex-direction: column; gap: 12px; }
 
 .opcion { 
@@ -82,36 +87,73 @@ button:hover {
     padding: 15px;
     font-family: 'Roboto', sans-serif;
     text-transform: none;
+    font-size: 1rem;
 }
 
+/* VALIDACIÓN DINÁMICA */
 .correcta { background: #2ecc71 !important; color: white !important; border-color: #27ae60 !important; }
 .incorrecta { background: #e74c3c !important; color: white !important; border-color: #c0392b !important; }
 
-.frase-test { 
-    font-family: 'Oswald', sans-serif; 
-    font-weight: 200; 
-    text-transform: lowercase; 
-    font-size: 4.5rem; 
-    text-align: center; 
-    margin-top: 20px; 
-    line-height: 0.9; 
+.feedback-pequeno {
+    font-size: 0.8rem;
+    margin-top: 8px;
+    font-weight: bold;
+    display: block;
+    text-transform: uppercase;
 }
 
-.nota-critica { color: #ff4757; } 
-.nota-aprobada { color: #a78039; } 
-.nota-notable { color: #2ed573; } 
-.nota-crack { color: #1e90ff; text-shadow: 0 0 25px rgba(30, 144, 255, 0.6); }
+/* --- RESULTADOS FINALES: ELIMINACIÓN DE ROJO Y TAMAÑO GIGANTE --- */
+#resultado { 
+    margin-top: 30px; 
+    padding: 20px; 
+    background: rgba(255,255,255,0.05); 
+    text-align: center; 
+    border-radius: 10px;
+}
 
-#resultado { margin-top: 40px; padding: 30px; background: rgba(255,255,255,0.05); text-align: center; }
+.nota-numero {
+    font-size: 1.1rem !important; /* Forzado a tamaño pequeño */
+    font-family: 'Oswald', sans-serif;
+    display: block;
+    margin-bottom: 5px;
+    color: #f8f7f4 !important; /* Forzado a color hueso */
+}
+
+.frase-test { 
+    font-family: 'Oswald', sans-serif; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    font-size: 1rem !important; /* Forzado a tamaño pequeño */
+    text-align: center; 
+    line-height: 1; 
+    color: #f8f7f4 !important; /* Forzado a color hueso */
+}
+
+/* Bloqueo total de clases de colores antiguas del JS */
+.nota-critica, .nota-aprobada, .nota-notable, .nota-crack { 
+    color: #f8f7f4 !important; 
+    text-shadow: none !important; 
+    font-size: 1rem !important;
+}
+
+/* --- CONTROLES Y NAVEGACIÓN --- */
+.controles-finales { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
 
 .btn-accion { 
     width: 100%; 
-    margin-bottom: 10px; 
+    padding: 15px;
     border-radius: 50px; 
     background: #a9a9b4; 
     color: #000; 
+    font-family: 'Oswald', sans-serif;
+    border: none;
+    cursor: pointer;
 }
 
-.btn-volver { border: 2px solid #f08bad; }
-
-.controles-finales { display: flex; flex-direction: column; gap: 10px; margin-top: 20px; }
+.btn-volver { 
+    border: 2px solid #f08bad; 
+    background: transparent; 
+    color: #f08bad; 
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
