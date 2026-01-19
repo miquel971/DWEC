@@ -225,7 +225,6 @@ const db = {
     ]
 };
 
-// --- MOTOR DEL TEST ---
 let preguntasActuales = [];
 let aciertos = 0;
 
@@ -264,10 +263,10 @@ function renderizarPreguntas() {
     preguntasActuales.forEach((p, i) => {
         const div = document.createElement('div');
         div.className = 'pregunta';
-        div.innerHTML = `<p>${i + 1}. ${p.q}</p><div class="opciones" id="opts-${i}"></div>`;
+        div.innerHTML = `<p>${i + 1}. ${p.q}</p><div class="opciones" id="opts-${i}"></div><span id="feedback-${i}" class="feedback-pequeno"></span>`;
         lista.appendChild(div);
 
-        // MEZCLA DE RESPUESTAS (Algoritmo Fisher-Yates)
+        // MEZCLA DE RESPUESTAS (Algoritmo Fisher-Yates) para que A, B, C roten
         let opciones = p.a.map((texto, index) => ({ texto, index }));
         for (let j = opciones.length - 1; j > 0; j--) {
             const k = Math.floor(Math.random() * (j + 1));
@@ -287,15 +286,20 @@ function renderizarPreguntas() {
 function validar(btn, pIdx, oIdxElegido) {
     const contenedor = document.getElementById(`opts-${pIdx}`);
     const botones = contenedor.children;
+    const feedback = document.getElementById(`feedback-${pIdx}`);
     if (botones[0].disabled) return;
     
     for (let b of botones) b.disabled = true;
 
     if (oIdxElegido === preguntasActuales[pIdx].c) {
         btn.classList.add('correcta');
+        feedback.innerText = "✓ correcto";
+        feedback.style.color = "#2ecc71";
         aciertos++;
     } else {
         btn.classList.add('incorrecta');
+        feedback.innerText = "✗ incorrecto";
+        feedback.style.color = "#e74c3c";
         for (let b of botones) {
             // Buscamos el texto que coincide con la correcta original para marcarlo
             if (b.innerText === preguntasActuales[pIdx].a[preguntasActuales[pIdx].c]) {
@@ -305,19 +309,23 @@ function validar(btn, pIdx, oIdxElegido) {
     }
 }
 
+
+
 document.getElementById('btn-nota').onclick = () => {
     const total = preguntasActuales.length;
     const notaFinal = (aciertos / total) * 10;
-    let frase = ""; let clase = "";
+    let frase = "";
     
-    if (notaFinal < 5) { frase = "SUSPENSO?"; clase = "nota-critica"; }
-    else if (notaFinal < 7) { frase = "BIEN"; clase = "nota-aprobada"; }
-    else if (notaFinal < 9) { frase = "BOMBOCLAT"; clase = "nota-notable"; }
-    else { frase = "PUTACRACK!!!"; clase = "nota-crack"; }
+    // Frases personalizadas según nota final
+    if (notaFinal < 5) { frase = "suspenso?"; }
+    else if (notaFinal < 7) { frase = "aprobado"; }
+    else if (notaFinal < 9) { frase = "bomboclat"; }
+    else { frase = "eres un crack!!!"; }
 
+    // El CSS con !important se encargará de que salga en color hueso y pequeño
     divResultado.innerHTML = `
-        <div style="font-size: 2rem; font-family: 'Oswald';">Nota: ${aciertos} / ${total} (${notaFinal.toFixed(1)})</div>
-        <div class="frase-test ${clase}">${frase}</div>
+        <span class="nota-numero">Nota: ${aciertos} / ${total} (${notaFinal.toFixed(1)})</span>
+        <div class="frase-test">${frase}</div>
     `;
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
 };
@@ -325,7 +333,7 @@ document.getElementById('btn-nota').onclick = () => {
 function volverAlMenu() {
     zonaTest.style.display = 'none';
     menuPrincipal.style.display = 'grid';
-    titulo.innerText = "REPASO EXAMEN TEORIA DWEC";
+    titulo.innerText = "Panel de Control DWEC";
     window.scrollTo(0, 0);
 }
 
